@@ -1,9 +1,10 @@
 package br.com.zup.registra
 
-import br.com.zup.KeymanagerRegistraGrpcServiceGrpc
-import br.com.zup.RegistraChavePixRequest
-import br.com.zup.RegistraChavePixResponse
+
 import br.com.zup.config.ErrorHandler
+import br.com.zup.grpc.KeymanagerRegistraGrpcServiceGrpc
+import br.com.zup.grpc.RegistraChavePixRequest
+import br.com.zup.grpc.RegistraChavePixResponse
 import br.com.zup.utils.toModel
 import io.grpc.stub.StreamObserver
 import javax.inject.Inject
@@ -20,7 +21,8 @@ class RegistraChaveEndPoint(@Inject private val service: NovaChavePixService)
         println(request)
         val novaChave = request!!.toModel()
         val service = service.registra(novaChave)
-        responseObserver?.onNext(RegistraChavePixResponse.newBuilder()
+        responseObserver?.onNext(
+            RegistraChavePixResponse.newBuilder()
             .setClientId(service.clientId.toString())
             .setPixId(service.chave)
             .build())

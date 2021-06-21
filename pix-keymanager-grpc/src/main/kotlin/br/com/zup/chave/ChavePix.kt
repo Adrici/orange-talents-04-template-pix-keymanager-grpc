@@ -1,7 +1,6 @@
 package br.com.zup.chave
 
-
-import br.com.zup.TipoDeConta
+import br.com.zup.grpc.TipoDeConta
 import br.com.zup.registra.TipoDeChave
 import java.time.LocalDateTime
 import java.util.*
