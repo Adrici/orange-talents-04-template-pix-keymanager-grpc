@@ -32,6 +32,6 @@ class RemoveChavePixService(@Inject val repository: ChavePixRepository,
             .orElseThrow{ChavePixNaoEncontradaException("Chave Pix não encontrada ou não pertence ao cliente") }
 
 
-        repository.delete(chave);
+        repository.delete(chave)
     }
 }

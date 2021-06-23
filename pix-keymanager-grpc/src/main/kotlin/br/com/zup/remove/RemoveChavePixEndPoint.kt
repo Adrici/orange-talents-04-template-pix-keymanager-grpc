@@ -14,7 +14,9 @@ import javax.inject.Singleton
 class RemoveChavePixEndPoint(@Inject private val service: RemoveChavePixService)
     : KeymanagerRemoveGrpcServiceGrpc.KeymanagerRemoveGrpcServiceImplBase(){
 
-    override fun remove(request: RemoveChavePixRequest?, responseObserver: StreamObserver<RemoveChavePixResponse>?) {
+    override fun remove(request: RemoveChavePixRequest?,
+                        responseObserver: StreamObserver<RemoveChavePixResponse>?)
+    {
         service.remove(request?.clientId, request?.pixId)
 
         responseObserver?.onNext(
