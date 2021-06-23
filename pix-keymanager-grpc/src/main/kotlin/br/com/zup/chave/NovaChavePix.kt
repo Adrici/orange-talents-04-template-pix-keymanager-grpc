@@ -1,6 +1,6 @@
 package br.com.zup.chave
 
-import br.com.zup.client.*
+
 import br.com.zup.grpc.TipoDeConta
 import br.com.zup.registra.TipoDeChaveRegex
 import br.com.zup.utils.ValidUUID
@@ -10,6 +10,7 @@ import javax.validation.constraints.NotBlank
 import javax.validation.constraints.NotNull
 import javax.validation.constraints.Size
 
+
 @Introspected
 data class NovaChavePix(
     @ValidUUID @field:NotBlank val clienteId: String,
@@ -18,12 +19,12 @@ data class NovaChavePix(
     @field:Size(max = 77) val chave: String
 ) {
 
-    fun toModel(conta: ContaAssociada, bcbResponse: CadastraChavePixResponse): ChavePix{
+    fun toModel(conta: ContaAssociada): ChavePix{
         return ChavePix(
             clientId = UUID.fromString(this.clienteId),
-            tipodeChave = TipoDeChaveRegex.valueOf(this.tipoDeChave!!.name),
+            tipoDeChave = TipoDeChaveRegex.valueOf(this.tipoDeChave!!.name),
             tipoDeConta = TipoDeConta.valueOf(this.tipoDeConta!!.name),
-            chave = bcbResponse.key,
+            chave = if(this.tipoDeChave == TipoDeChaveRegex.RANDOM) UUID.randomUUID().toString() else this.chave,
             conta = conta
         )
     }

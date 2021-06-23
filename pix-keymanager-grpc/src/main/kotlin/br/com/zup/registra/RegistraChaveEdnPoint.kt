@@ -10,6 +10,7 @@ import io.grpc.stub.StreamObserver
 import javax.inject.Inject
 import javax.inject.Singleton
 
+
 @ErrorHandler
 @Singleton
 class RegistraChaveEndPoint(@Inject private val service: NovaChavePixService)
@@ -21,8 +22,7 @@ class RegistraChaveEndPoint(@Inject private val service: NovaChavePixService)
         println(request)
         val novaChave = request!!.toModel()
         val service = service.registra(novaChave)
-        responseObserver?.onNext(
-            RegistraChavePixResponse.newBuilder()
+        responseObserver?.onNext(RegistraChavePixResponse.newBuilder()
             .setClientId(service.clientId.toString())
             .setPixId(service.pixId.toString())
             .build())

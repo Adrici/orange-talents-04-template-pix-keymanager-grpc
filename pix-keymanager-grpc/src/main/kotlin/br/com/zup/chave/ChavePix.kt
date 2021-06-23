@@ -17,7 +17,7 @@ class ChavePix(@field:NotNull
                @field:NotNull
                @Enumerated(EnumType.STRING)
                @Column(nullable = false)
-               val tipodeChave: TipoDeChaveRegex,
+               val tipoDeChave: TipoDeChaveRegex,
 
                @field:NotBlank
                @Column(unique = true, nullable = false)
